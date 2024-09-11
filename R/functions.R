@@ -50,10 +50,7 @@ implicit_povline <- function(goal            = 0.5,
   attempt[i] <- pip_call(povline = pl[i],
                          lkup    = lkup,
                          country = country,
-                         year    = year,
-                         reporting_level = reporting_level,
-                         fill_gaps = fill_gaps,
-                         welfare_type = welfare_type)
+                         year    = year)
 
   # attempt <- pip_call(povline = pl,
   #                     country = "AGO",
@@ -103,10 +100,7 @@ implicit_povline <- function(goal            = 0.5,
     attempt[i] <- pip_call(povline = pl[i],
                            lkup    = lkup,
                            country = country,
-                           year    = year,
-                           reporting_level = reporting_level,
-                           fill_gaps = fill_gaps,
-                           welfare_type = welfare_type)
+                           year    = year)
 
     # assess if the value of delta has to change
     if ((attempt[i] > goal & below == 1) |
@@ -147,7 +141,7 @@ implicit_povline <- function(goal            = 0.5,
 
 
 pip_call <- function(povline, lkup, ...) {
-  pipapi::pip(povline = povline,
+  pipapi::pip_grp_logic(povline = povline,
               lkup    = lkup,
               ...) |>
     fselect(headcount) |>
